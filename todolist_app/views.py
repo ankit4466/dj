@@ -4,13 +4,14 @@ from todolist_app.models import Tasklist
 from todolist_app.form import TaskForm
 
 def todolist(request):
+    all_tasks = Tasklist.objects.all()
     if request.method == "POST":
         form = TaskForm(request.POST or None)
-        TaskForm.save()
+        Tasklist.save()
         return redirect('todolist.html')
     else:
         all_tasks = Tasklist.objects.all()
-        return render(request,'todolist.html', {'all_tasks':all_tasks})
+        return render(request, 'todolist.html',{'all_tasks':all_tasks})
 
 def contact(request):
     context = {
